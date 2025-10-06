@@ -1,0 +1,111 @@
+{
+  "openapi" : "3.1.0",
+  "paths" : {
+    "/invoker" : {
+      "post" : {
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Post Root",
+        "tags" : [ "Invoker" ]
+      },
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Get Root",
+        "tags" : [ "Invoker" ]
+      }
+    },
+    "/invoker/{path}" : {
+      "post" : {
+        "parameters" : [ {
+          "name" : "path",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Post Path",
+        "tags" : [ "Invoker" ]
+      },
+      "get" : {
+        "parameters" : [ {
+          "name" : "path",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Get Path",
+        "tags" : [ "Invoker" ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "DataSHIELD Invoker API",
+    "version" : "1.0.1",
+    "description" : "Just an example service",
+    "termsOfService" : "Your terms here",
+    "contact" : {
+      "name" : "Example API Support",
+      "email" : "techsupport@example.com",
+      "url" : "http://exampleurl.com/contact"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers" : [ {
+    "url" : "https://localhost:8443",
+    "description" : "Auto generated value"
+  }, {
+    "url" : "https://0.0.0.0:8443",
+    "description" : "Auto generated value"
+  } ]
+}

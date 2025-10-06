@@ -1,0 +1,13 @@
+#
+# Copyright (c) 2025, Focus-5 Consortium Members
+#
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  labels:
+    app: config
+data:
+  datashield_invoker_host: "localhost"
+  datashield_invoker_port: "8080"

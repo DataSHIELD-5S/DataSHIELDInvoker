@@ -1,0 +1,6 @@
+TODO
+----
+
+- Fix OpeAPI setting in datashield-invoker/src/main/resources/application.properties
+
+- All the rest
