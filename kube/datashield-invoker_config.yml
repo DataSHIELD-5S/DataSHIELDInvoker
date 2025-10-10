@@ -10,4 +10,4 @@ metadata:
     app: config
 data:
   datashield_invoker_host: "localhost"
-  datashield_invoker_port: "8080"
+  datashield_invoker_port: "8443"

@@ -1,7 +1,7 @@
 ---
 openapi: 3.1.0
 paths:
-  /invoker:
+  /:
     post:
       responses:
         "200":
@@ -24,7 +24,184 @@ paths:
       summary: Get Root
       tags:
       - Invoker
-  /invoker/{path}:
+  /invoker/ws/system/subject-profile/_current:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Get Current
+      tags:
+      - Invoker
+  /{p1}/{p2}:
+    get:
+      parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p2
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Get Call 2
+      tags:
+      - Invoker
+  /{p1}/{p2}/{p3}:
+    get:
+      parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p2
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p3
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Get Call 3
+      tags:
+      - Invoker
+  /{p1}/{p2}/{p3}/{p4}:
+    get:
+      parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p2
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p3
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p4
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Get Call 4
+      tags:
+      - Invoker
+  /{p1}/{p2}/{p3}/{p4}/{p5}:
+    get:
+      parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p2
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p3
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p4
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p5
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Get Call 5
+      tags:
+      - Invoker
+  /{p1}/{p2}/{p3}/{p4}/{p5}/{p6}:
+    get:
+      parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p2
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p3
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p4
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p5
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p6
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Get Call 6
+      tags:
+      - Invoker
+  /{path}:
     post:
       parameters:
       - name: path

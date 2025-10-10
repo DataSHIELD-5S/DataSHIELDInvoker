@@ -9,5 +9,14 @@ spec:
   - name: datashield-invoker
     image: docker.io/focus5/datashield-invoker:latest
     ports:
-      - containerPort: 8443
-        hostPort: 8443
+    - containerPort: 8443
+      hostPort: 8443
+    volumeMounts:
+    - name: datashield-invoker-volume
+      mountPath: /data
+      readOnly: true
+  volumes:
+  - name: datashield-invoker-volume
+    hostPath:
+      path: ./datashield-invoker
+      type: DirectoryOrCreate
