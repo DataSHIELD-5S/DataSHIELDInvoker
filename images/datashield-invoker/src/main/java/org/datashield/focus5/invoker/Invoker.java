@@ -9,12 +9,36 @@ import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.MediaType;
+import org.jboss.resteasy.reactive.RestResponse;
+import org.jboss.resteasy.reactive.RestResponse.ResponseBuilder;
 
 @Path("/")
 public class Invoker
 {
     @Inject
     public Logger logger;
+
+    static class Res
+    {
+        public Res(String data)
+        {
+            this.data = data;
+        }
+
+        public String data;
+    }
+
+    @GET
+    @Path("/invoker/ws/system/subject-profile/_current")
+    public RestResponse<Res> selectProfile()
+    {
+        logger.info("Call: sw/system/select-profile 'Current'");
+
+        return ResponseBuilder.ok(new Res("Test"), MediaType.APPLICATION_JSON)
+                              .header("x-opal-version", "1.0.0")
+                              .build();
+    }
 
     @GET
     public String getRoot()
@@ -33,23 +57,6 @@ public class Invoker
         return "Get Path \"" + path + "\"";
     }
 
-    @POST
-    public String postRoot()
-    {
-        logger.info("Post Root");
-
-        return "Post Root";
-    }
-
-    @POST
-    @Path("/{path}")
-    public String postPath(String path)
-    {
-        logger.info("Post Path \"" + path + "\"");
-
-        return "Post Path \"" + path + "\"";
-    }
-
     @GET
     @Path("/{p1}/{p2}")
     public String getCall2(String p1, String p2)
@@ -57,15 +64,6 @@ public class Invoker
         logger.info("Call-2: 'Get' " + p1 + " " + p2);
 
         return "Call-2: 'Get' " + p1 + " " + p2;
-    }
-
-    @GET
-    @Path("/invoker/ws/system/subject-profile/_current")
-    public String getCurrent()
-    {
-        logger.info("Call: 'Current'");
-
-        return "Call: 'Current'";
     }
 
     @GET
@@ -102,5 +100,22 @@ public class Invoker
         logger.info("Call-6: 'Get' " + p1 + " " + p2 + " " + p3 + " " + p4 + " " + p5 + " " + p6);
 
         return "Call-6: 'Get' " + p1 + " " + p2 + " " + p3 + " " + p4 + " " + p5 + " " + p6;
+    }
+
+    @POST
+    public String postRoot()
+    {
+        logger.info("Post Root");
+
+        return "Post Root";
+    }
+
+    @POST
+    @Path("/{path}")
+    public String postPath(String path)
+    {
+        logger.info("Post Path \"" + path + "\"");
+
+        return "Post Path \"" + path + "\"";
     }
 }
