@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2025, Focus-5 Consortium Members
+ */
+
 package org.datasheild.focus5.invoker;
 
 import org.jboss.logging.Logger;
@@ -13,15 +17,15 @@ import jakarta.ws.rs.core.MediaType;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.RestResponse.ResponseBuilder;
 
-@Path("/")
+@Path("")
 public class Invoker
 {
     @Inject
     public Logger logger;
 
-    static class Res
+    static class Res1
     {
-        public Res(String data)
+        public Res1(String data)
         {
             this.data = data;
         }
@@ -30,13 +34,44 @@ public class Invoker
     }
 
     @GET
-    @Path("/invoker/ws/system/subject-profile/_current")
-    public RestResponse<Res> selectProfile()
+    @Path("invoker/ws/system/subject-profile/_current")
+    public RestResponse<Res1> selectProfile()
     {
-        logger.info("Call: sw/system/select-profile 'Current'");
+        logger.info("Call: ws/system/select-profile/_current");
 
-        return ResponseBuilder.ok(new Res("Test"), MediaType.APPLICATION_JSON)
+        return ResponseBuilder.ok(new Res1("Test"), MediaType.APPLICATION_JSON)
                               .header("x-opal-version", "1.0.0")
+                              .build();
+    }
+
+    static class Res2
+    {
+        public Res2(String principal, String realm, String groups, String created, String lastUpdate)
+        {
+            this.principal  = principal;
+            this.realm      = realm;
+            this.groups     = groups;
+            this.created    = created;
+            this.lastUpdate = lastUpdate;
+        }
+
+        public String principal;
+        public String realm;
+        public String groups;
+        public String created;
+        public String lastUpdate;
+    }
+
+    @GET
+    @Path("invoker/ws/system/subject-profile")
+    public RestResponse<Res2[]> userProfile()
+    {
+        logger.info("Call: ws/system/select-profile");
+
+        Res2[] response = new Res2[1];
+        response[0] = new Res2("P_Test", "R_Test", "G_Test", "C_Test", "LU_Update");
+
+        return ResponseBuilder.ok(response, MediaType.APPLICATION_JSON)
                               .build();
     }
 

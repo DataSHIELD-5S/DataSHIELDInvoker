@@ -1,5 +1,25 @@
 ---
 openapi: 3.1.0
+components:
+  schemas:
+    Res1:
+      type: object
+      properties:
+        data:
+          type: string
+    Res2:
+      type: object
+      properties:
+        principal:
+          type: string
+        realm:
+          type: string
+        groups:
+          type: string
+        created:
+          type: string
+        lastUpdate:
+          type: string
 paths:
   /:
     post:
@@ -24,16 +44,30 @@ paths:
       summary: Get Root
       tags:
       - Invoker
+  /invoker/ws/system/subject-profile:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Res2"
+      summary: User Profile
+      tags:
+      - Invoker
   /invoker/ws/system/subject-profile/_current:
     get:
       responses:
         "200":
           description: OK
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-      summary: Get Current
+                $ref: "#/components/schemas/Res1"
+      summary: Select Profile
       tags:
       - Invoker
   /{p1}/{p2}:
@@ -249,7 +283,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-- url: https://localhost:8443
+- url: https://localhost:8543
   description: Auto generated value
-- url: https://0.0.0.0:8443
+- url: https://0.0.0.0:8543
   description: Auto generated value
