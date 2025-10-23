@@ -1,2 +1,2 @@
-IMAGE_REPO = docker.io/focus5
+IMAGE_REPO = docker.io/datashield5s
 IMAGE_TAG  = latest

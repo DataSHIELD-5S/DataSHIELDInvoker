@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: datashield-invoker
-    image: docker.io/focus5/datashield-invoker:latest
+    image: docker.io/datashield5s/datashield-invoker:latest
     ports:
     - containerPort: 8543
       hostPort: 9443
@@ -16,7 +16,7 @@ spec:
       mountPath: /data
       readOnly: true
   - name: direct-proxy
-    image: docker.io/focus5/direct-proxy
+    image: docker.io/datashield5s/direct-proxy:latest
     ports:
     - containerPort: 8643
       hostPort: 10443
