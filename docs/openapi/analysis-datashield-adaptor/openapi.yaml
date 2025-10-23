@@ -271,7 +271,7 @@ paths:
       tags:
       - Invoker
 info:
-  title: DataSHIELD Invoker API
+  title: DataSHIELD Invoker API (production)
   version: 1.0.1
   description: Just an example service
   termsOfService: Your terms here
