@@ -15,15 +15,15 @@ spec:
     - name: focus5-volume
       mountPath: /data
       readOnly: true
-  - name: direct-proxy
-    image: docker.io/datashield5s/direct-proxy:latest
-    ports:
-    - containerPort: 8643
-      hostPort: 10443
-    volumeMounts:
-    - name: focus5-volume
-      mountPath: /data
-      readOnly: true
+#  - name: direct-proxy
+#    image: docker.io/datashield5s/direct-proxy:latest
+#    ports:
+#    - containerPort: 8643
+#      hostPort: 10443
+#    volumeMounts:
+#    - name: focus5-volume
+#      mountPath: /data
+#      readOnly: true
   volumes:
   - name: focus5-volume
     hostPath:
