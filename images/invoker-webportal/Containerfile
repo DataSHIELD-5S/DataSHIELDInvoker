@@ -1,0 +1,10 @@
+#
+# Copyright (c) 2025, Focus-5 Consortium Members
+#
+
+FROM quay.io/jitesoft/nginx
+
+COPY dist/invoker-webportal/browser /usr/local/nginx/html
+COPY nginx.default.template /usr/local/default.template
+
+EXPOSE 80

@@ -1,0 +1,14 @@
+server {
+    listen      ${LISTEN_PORT};
+    server_name ${SERVER_NAME};
+
+    location / {
+        root  /usr/local/nginx/html;
+        index index.html;
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root ${SERVER_ROOT};
+    }
+}
