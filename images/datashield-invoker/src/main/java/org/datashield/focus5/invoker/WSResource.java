@@ -7,71 +7,46 @@ package org.datasheild.focus5.invoker;
 import org.jboss.logging.Logger;
 
 import jakarta.inject.Inject;
-import jakarta.enterprise.context.ApplicationScoped;
 
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
+import org.jboss.resteasy.reactive.RestPath;
+import org.jboss.resteasy.reactive.RestHeader;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.RestResponse.ResponseBuilder;
 
-@Path("")
-public class Invoker
+@Path("ws")
+public class WSResource
 {
     @Inject
     public Logger logger;
 
-    static class Res1
-    {
-        public Res1(String data)
-        {
-            this.data = data;
-        }
-
-        public String data;
-    }
-
     @GET
-    @Path("invoker/ws/system/subject-profile/_current")
-    public RestResponse<Res1> selectProfile()
+    @Path("system/subject-profile/{profile}")
+    public RestResponse<String> getSubjectProfile(@RestPath String profile, @RestHeader("Host") String host, @RestHeader("User-Agent") String userAgent, @RestHeader("Accept-Encoding") String acceptEncoding, @RestHeader("Content-Type") String contentType, @RestHeader("Content-Length") String contentLength)
     {
-        logger.info("Call: ws/system/select-profile/_current");
+        logger.infof("Call: ws/system/select-profile/%s", profile);
+        logger.infof("          host           = %s", host);
+        logger.infof("          userAgent      = %s", userAgent);
+        logger.infof("          acceptEncoding = %s", acceptEncoding);
+        logger.infof("          contentType    = %s", contentType);
+        logger.infof("          contentLength  = %s", contentLength);
 
-        return ResponseBuilder.ok(new Res1("Test"), MediaType.APPLICATION_JSON)
-                              .header("x-opal-version", "1.0.0")
+        return ResponseBuilder.ok("", MediaType.APPLICATION_JSON /* MediaType.TEXT_PLAIN */)
+                              .header("x-opal-version", "5.2.1")
                               .build();
     }
 
-    static class Res2
-    {
-        public Res2(String principal, String realm, String groups, String created, String lastUpdate)
-        {
-            this.principal  = principal;
-            this.realm      = realm;
-            this.groups     = groups;
-            this.created    = created;
-            this.lastUpdate = lastUpdate;
-        }
-
-        public String principal;
-        public String realm;
-        public String groups;
-        public String created;
-        public String lastUpdate;
-    }
-
     @GET
-    @Path("invoker/ws/system/subject-profile")
-    public RestResponse<Res2[]> userProfile()
+    @Path("datasource/{datasource}/table/{table}")
+    public RestResponse<String> selectTable(@RestPath String datasource, @RestPath String table)
     {
-        logger.info("Call: ws/system/select-profile");
+        logger.infof("Call: ws/datasource/%s/table/%s", datasource, table);
 
-        Res2[] response = new Res2[1];
-        response[0] = new Res2("P_Test", "R_Test", "G_Test", "C_Test", "LU_Update");
-
-        return ResponseBuilder.ok(response, MediaType.APPLICATION_JSON)
+        return ResponseBuilder.ok("", MediaType.APPLICATION_JSON)
                               .build();
     }
 

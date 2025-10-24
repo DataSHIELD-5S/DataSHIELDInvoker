@@ -1,122 +1,17 @@
 {
   "openapi" : "3.1.0",
-  "components" : {
-    "schemas" : {
-      "Res1" : {
-        "type" : "object",
-        "properties" : {
-          "data" : {
-            "type" : "string"
-          }
-        }
-      },
-      "Res2" : {
-        "type" : "object",
-        "properties" : {
-          "principal" : {
-            "type" : "string"
-          },
-          "realm" : {
-            "type" : "string"
-          },
-          "groups" : {
-            "type" : "string"
-          },
-          "created" : {
-            "type" : "string"
-          },
-          "lastUpdate" : {
-            "type" : "string"
-          }
-        }
-      }
-    }
-  },
   "paths" : {
-    "/" : {
-      "post" : {
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "text/plain" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            }
-          }
-        },
-        "summary" : "Post Root",
-        "tags" : [ "Invoker" ]
-      },
-      "get" : {
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "text/plain" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            }
-          }
-        },
-        "summary" : "Get Root",
-        "tags" : [ "Invoker" ]
-      }
-    },
-    "/invoker/ws/system/subject-profile" : {
-      "get" : {
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Res2"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "summary" : "User Profile",
-        "tags" : [ "Invoker" ]
-      }
-    },
-    "/invoker/ws/system/subject-profile/_current" : {
-      "get" : {
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Res1"
-                }
-              }
-            }
-          }
-        },
-        "summary" : "Select Profile",
-        "tags" : [ "Invoker" ]
-      }
-    },
-    "/{p1}/{p2}" : {
+    "/ws/datasource/{datasource}/table/{table}" : {
       "get" : {
         "parameters" : [ {
-          "name" : "p1",
+          "name" : "datasource",
           "in" : "path",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         }, {
-          "name" : "p2",
+          "name" : "table",
           "in" : "path",
           "required" : true,
           "schema" : {
@@ -135,30 +30,40 @@
             }
           }
         },
-        "summary" : "Get Call 2",
-        "tags" : [ "Invoker" ]
+        "summary" : "Select Table",
+        "tags" : [ "WS Resource" ]
       }
     },
-    "/{p1}/{p2}/{p3}" : {
+    "/ws/system/subject-profile/{profile}" : {
       "get" : {
         "parameters" : [ {
-          "name" : "p1",
+          "name" : "profile",
           "in" : "path",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
         }, {
-          "name" : "p2",
-          "in" : "path",
-          "required" : true,
+          "name" : "Accept-Encoding",
+          "in" : "header",
           "schema" : {
             "type" : "string"
           }
         }, {
-          "name" : "p3",
-          "in" : "path",
-          "required" : true,
+          "name" : "Content-Length",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "Host",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "User-Agent",
+          "in" : "header",
           "schema" : {
             "type" : "string"
           }
@@ -175,220 +80,8 @@
             }
           }
         },
-        "summary" : "Get Call 3",
-        "tags" : [ "Invoker" ]
-      }
-    },
-    "/{p1}/{p2}/{p3}/{p4}" : {
-      "get" : {
-        "parameters" : [ {
-          "name" : "p1",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p2",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p3",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p4",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "text/plain" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            }
-          }
-        },
-        "summary" : "Get Call 4",
-        "tags" : [ "Invoker" ]
-      }
-    },
-    "/{p1}/{p2}/{p3}/{p4}/{p5}" : {
-      "get" : {
-        "parameters" : [ {
-          "name" : "p1",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p2",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p3",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p4",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p5",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "text/plain" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            }
-          }
-        },
-        "summary" : "Get Call 5",
-        "tags" : [ "Invoker" ]
-      }
-    },
-    "/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}" : {
-      "get" : {
-        "parameters" : [ {
-          "name" : "p1",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p2",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p3",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p4",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p5",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "p6",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "text/plain" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            }
-          }
-        },
-        "summary" : "Get Call 6",
-        "tags" : [ "Invoker" ]
-      }
-    },
-    "/{path}" : {
-      "post" : {
-        "parameters" : [ {
-          "name" : "path",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "text/plain" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            }
-          }
-        },
-        "summary" : "Post Path",
-        "tags" : [ "Invoker" ]
-      },
-      "get" : {
-        "parameters" : [ {
-          "name" : "path",
-          "in" : "path",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "OK",
-            "content" : {
-              "text/plain" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            }
-          }
-        },
-        "summary" : "Get Path",
-        "tags" : [ "Invoker" ]
+        "summary" : "Get Subject Profile",
+        "tags" : [ "WS Resource" ]
       }
     }
   },
