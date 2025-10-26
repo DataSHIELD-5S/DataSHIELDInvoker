@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-@Component({
-  selector: 'iwp-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+@Component
+({
+    selector: 'iwp-root',
+    imports: [RouterOutlet],
+    templateUrl: './app.html',
+    styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('invoker-webportal');
+export class App
+{
+    protected readonly title = signal('invoker-webportal');
 }
