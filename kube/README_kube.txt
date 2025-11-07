@@ -1,12 +1,12 @@
 Start Pod
 ---------
 
-podman kube play --configmap datashield-invoker_config.yml datashield-invoker_pod.yml
+podman kube play --configmap analysis-requester_config.yml analysis-requester_pod.yml
 
 Shutdown pod
 ------------
 
-podman kube down datashield-invoker_pod.yml
+podman kube down analysis-requester_pod.yml
 
 Total Podman reset
 ------------------

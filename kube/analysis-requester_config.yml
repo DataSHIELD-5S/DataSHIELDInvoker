@@ -1,0 +1,13 @@
+#
+# Copyright (c) 2025, Focus-5 Consortium Members
+#
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: analysis-requester_config
+  labels:
+    app: analysis-requester_config
+data:
+  opal-proxy_host: "localhost"
+  opal-proxy_port: "8443"

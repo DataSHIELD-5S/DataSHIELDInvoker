@@ -10,7 +10,7 @@ MVN     = mvn
 PODMAN  = podman
 
 # IMAGE_TAG from settings.mk
-IMAGE_NAME = $(IMAGE_REPO)/direct-proxy
+IMAGE_NAME = $(IMAGE_REPO)/opal-proxy
 # IMAGE_TAG from settings.mk
 
 all:

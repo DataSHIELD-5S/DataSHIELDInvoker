@@ -17,6 +17,9 @@ import org.jboss.resteasy.reactive.RestPath;
 import org.jboss.resteasy.reactive.RestHeader;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.RestResponse.ResponseBuilder;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
 
 @Path("ws")
 public class WSResource
@@ -26,20 +29,31 @@ public class WSResource
 
     @GET
     @Path("system/subject-profile/{profile}")
-    public RestResponse<String> getSubjectProfile(@RestPath String profile, @RestHeader("Host") String host, @RestHeader("User-Agent") String userAgent, @RestHeader("Accept-Encoding") String acceptEncoding, @RestHeader("Content-Type") String contentType, @RestHeader("Content-Length") String contentLength)
+    public RestResponse<String> getSubjectProfile(@RestPath String profile, @RestHeader("Host") String host, @RestHeader("User-Agent") String userAgent, @RestHeader("Accept-Encoding") String acceptEncoding, @RestHeader("Accept") String accept)
     {
         logger.infof("Call: ws/system/select-profile/%s", profile);
         logger.infof("          host           = %s", host);
         logger.infof("          userAgent      = %s", userAgent);
         logger.infof("          acceptEncoding = %s", acceptEncoding);
-        logger.infof("          contentType    = %s", contentType);
-        logger.infof("          contentLength  = %s", contentLength);
+        logger.infof("          accept         = %s", accept);
 
-        
+        Client client = ClientBuilder.newBuilder()
+//                                     .target("https://focus5:8443/")
+//                                     .remoteTarget.path()
+//                                     .request().get()
+                                     .build();
 
+        WebTarget target = client.target("https://localhost:8443");
 
-        return ResponseBuilder.ok("", MediaType.APPLICATION_JSON /* MediaType.TEXT_PLAIN */)
-                              .header("x-opal-version", "5.2.1")
+        String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
+
+        logger.info("Response");
+        logger.infof("              response = %s", response);
+
+        client.close();
+
+        return ResponseBuilder.ok("", MediaType.APPLICATION_JSON)
+                              .header("x-opal-version", "5.3.2")
                               .build();
     }
 

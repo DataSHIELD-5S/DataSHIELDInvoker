@@ -50,12 +50,6 @@
             "type" : "string"
           }
         }, {
-          "name" : "Content-Length",
-          "in" : "header",
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
           "name" : "Host",
           "in" : "header",
           "schema" : {
