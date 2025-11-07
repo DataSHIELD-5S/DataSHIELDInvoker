@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: analysis-requester_pod
+  name: analysis-requester
   labels:
-    app: analysis-requester_pod
+    app: analysis-requester
 spec:
   containers:
   - name: opal_proxy
