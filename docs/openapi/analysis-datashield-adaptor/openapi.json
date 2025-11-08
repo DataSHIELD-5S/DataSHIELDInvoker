@@ -95,10 +95,10 @@
     }
   },
   "servers" : [ {
-    "url" : "https://localhost:8543",
+    "url" : "https://localhost:8443",
     "description" : "Auto generated value"
   }, {
-    "url" : "https://0.0.0.0:8543",
+    "url" : "https://0.0.0.0:8443",
     "description" : "Auto generated value"
   } ]
 }

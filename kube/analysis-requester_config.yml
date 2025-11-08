@@ -9,5 +9,5 @@ metadata:
   labels:
     app: analysis-requester_config
 data:
-  opal-proxy_host: "localhost"
-  opal-proxy_port: "8443"
+  requester-opal-proxy_host: "localhost"
+  requester-opal-proxy_port: "9443"

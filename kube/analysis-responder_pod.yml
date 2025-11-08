@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2025, Focus-5 Consortium Members
+#
+
 apiVersion: v1
 kind: Pod
 metadata:

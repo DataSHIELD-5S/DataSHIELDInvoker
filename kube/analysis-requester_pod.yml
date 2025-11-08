@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2025, Focus-5 Consortium Members
+#
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,6 +12,17 @@ spec:
   containers:
   - name: opal_proxy
     image: docker.io/datashield5s/opal-proxy:latest
+    env:
+    - name: OPAL_PROXY_HOST
+      valueFrom:
+        configMapKeyRef:
+          name: analysis-requester_config
+          key: requester-opal-proxy_host
+    - name: OPAL_PROXY_PORT
+      valueFrom:
+        configMapKeyRef:
+          name: analysis-requester_config
+          key: requester-opal-proxy_port
     ports:
     - containerPort: 8543
       hostPort: 9443
