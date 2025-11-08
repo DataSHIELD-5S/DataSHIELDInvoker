@@ -23,6 +23,16 @@ spec:
         configMapKeyRef:
           name: analysis-requester_config
           key: requester-opal-proxy_port
+    - name: OPAL_HOST
+      valueFrom:
+        configMapKeyRef:
+          name: analysis-requester_config
+          key: responder-opal_host
+    - name: OPAL_PORT
+      valueFrom:
+        configMapKeyRef:
+          name: analysis-requester_config
+          key: responder-opal_port
     ports:
     - containerPort: 8543
       hostPort: 9443
@@ -30,7 +40,7 @@ spec:
     - name: requester-cert_volume
       mountPath: /data
       readOnly: true
-  - name: invoker-webportal
+  - name: requester-webportal
     image: docker.io/datashield5s/invoker-webportal:latest
     ports:
     - containerPort: 80

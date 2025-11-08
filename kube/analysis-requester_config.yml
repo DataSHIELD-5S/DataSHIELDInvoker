@@ -11,3 +11,5 @@ metadata:
 data:
   requester-opal-proxy_host: "localhost"
   requester-opal-proxy_port: "9443"
+  responder-opal_host: "localhost"
+  responder-opal_port: "8443"
