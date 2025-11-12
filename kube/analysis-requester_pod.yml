@@ -34,7 +34,7 @@ spec:
           name: analysis-requester_config
           key: responder-opal_port
     ports:
-    - containerPort: 8543
+    - containerPort: 9443
       hostPort: 9443
     volumeMounts:
     - name: requester-cert_volume

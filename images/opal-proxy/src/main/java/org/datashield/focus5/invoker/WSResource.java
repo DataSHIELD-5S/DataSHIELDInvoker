@@ -37,15 +37,18 @@ public class WSResource
         logger.infof("          acceptEncoding = %s", acceptEncoding);
         logger.infof("          accept         = %s", accept);
 
+        logger.info("Create client");
         Client client = ClientBuilder.newBuilder()
-//                                     .target("https://focus5:8443/")
+//                                     .target("https://localhost:8443/")
 //                                     .remoteTarget.path()
 //                                     .request().get()
                                      .build();
 
+        logger.info("Create webtarget");
         WebTarget target = client.target("https://localhost:8443");
 
-        String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
+        String response = target.request(MediaType.APPLICATION_JSON)
+                                .get(String.class);
 
         logger.info("Response");
         logger.infof("              response = %s", response);
