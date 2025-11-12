@@ -17,9 +17,12 @@ import org.jboss.resteasy.reactive.RestPath;
 import org.jboss.resteasy.reactive.RestHeader;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.RestResponse.ResponseBuilder;
+import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.client.Invocation.Builder;
 
 @Path("ws")
 public class WSResource
@@ -31,33 +34,57 @@ public class WSResource
     @Path("system/subject-profile/{profile}")
     public RestResponse<String> getSubjectProfile(@RestPath String profile, @RestHeader("Host") String host, @RestHeader("User-Agent") String userAgent, @RestHeader("Accept-Encoding") String acceptEncoding, @RestHeader("Accept") String accept)
     {
-        logger.infof("Call: ws/system/select-profile/%s", profile);
-        logger.infof("          host           = %s", host);
-        logger.infof("          userAgent      = %s", userAgent);
-        logger.infof("          acceptEncoding = %s", acceptEncoding);
-        logger.infof("          accept         = %s", accept);
+        try
+        {
+            logger.infof("Call: ws/system/select-profile/%s", profile);
+            logger.infof("          host           = %s", host);
+            logger.infof("          userAgent      = %s", userAgent);
+            logger.infof("          acceptEncoding = %s", acceptEncoding);
+            logger.infof("          accept         = %s", accept);
 
-        logger.info("Create client");
-        Client client = ClientBuilder.newBuilder()
-//                                     .target("https://localhost:8443/")
-//                                     .remoteTarget.path()
-//                                     .request().get()
-                                     .build();
+            logger.info("1)------------------");
 
-        logger.info("Create webtarget");
-        WebTarget target = client.target("https://localhost:8443");
+            logger.info("Create client");
+            Client opalClient = ClientBuilder.newBuilder()
+                                             .build();
 
-        String response = target.request(MediaType.APPLICATION_JSON)
-                                .get(String.class);
+            logger.info("2)------------------");
 
-        logger.info("Response");
-        logger.infof("              response = %s", response);
+            logger.info("Create webtarget");
+            WebTarget opalTarget = opalClient.target("https://localhost:8443");
 
-        client.close();
+            logger.info("3)------------------");
 
-        return ResponseBuilder.ok("", MediaType.APPLICATION_JSON)
-                              .header("x-opal-version", "5.3.2")
-                              .build();
+            Invocation.Builder opalRequest = opalTarget.request(MediaType.APPLICATION_JSON)
+                                                       .header("User-Agent", userAgent)
+                                                       .header("Accept-Encoding", acceptEncoding)
+                                                       .header("Accept", accept);
+
+            String opalResponse = opalRequest.get(String.class);
+
+            logger.info("4)------------------");
+
+            logger.info("OpalResponse");
+            logger.infof("              opalResponse = %s", opalResponse);
+
+            opalClient.close();
+
+            logger.info("5)------------------");
+
+            return ResponseBuilder.ok("", MediaType.APPLICATION_JSON)
+                                  .header("x-opal-version", "5.3.2")
+                                  .build();
+        }
+        catch (Error error)
+        {
+            logger.error("==== In getSubjectProfile: ", error);
+            throw error;
+        }
+        catch (Exception exception)
+        {
+            logger.error("==== In getSubjectProfile: ", exception);
+            throw exception;
+        }
     }
 
     @GET
