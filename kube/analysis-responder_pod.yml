@@ -41,7 +41,7 @@ spec:
     - name: MONGO_INITDB_ROOT_PASSWORD
       value: "foobar"
   - name: rock
-    image: datashield/rock-margin-idiom-permissive:latest
+    image: datashield/rock-panda-matilda:latest
     ports:
     - containerPort: 8085
       hostPort: 8085
