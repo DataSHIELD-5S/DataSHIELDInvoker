@@ -10,24 +10,24 @@ metadata:
     app: analysis-requester
 spec:
   containers:
-  - name: opal_proxy
+  - name: opal-proxy
     image: docker.io/datashield5s/opal-proxy:latest
     env:
     - name: OPAL_PROXY_HOST
       valueFrom:
         configMapKeyRef:
-          name: analysis-requester_config
+          name: analysis-requester-config
           key: requester-opal-proxy_host
     - name: OPAL_PROXY_PORT
       valueFrom:
         configMapKeyRef:
-          name: analysis-requester_config
+          name: analysis-requester-config
           key: requester-opal-proxy_port
     ports:
     - containerPort: 8543
       hostPort: 9443
     volumeMounts:
-    - name: requester-cert_volume
+    - name: requester-cert-volume
       mountPath: /data
       readOnly: true
   - name: invoker-webportal
@@ -36,7 +36,7 @@ spec:
     - containerPort: 80
       hostPort: 8080
   volumes:
-  - name: requester-cert_volume
+  - name: requester-cert-volume
     hostPath:
       path: ./focus5-volume
       type: DirectoryOrCreate

@@ -5,9 +5,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: analysis-requester_config
+  name: analysis-requester-config
   labels:
-    app: analysis-requester_config
+    app: analysis-requester-config
 data:
-  requester-opal-proxy_host: "localhost"
-  requester-opal-proxy_port: "9443"
+  requester-opal-proxy-host: "localhost"
+  requester-opal-proxy-port: "9443"
